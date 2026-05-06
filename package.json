@@ -1,0 +1,21 @@
+{
+  "name": "mothers-day-website",
+  "version": "1.0.0",
+  "description": "A heartfelt Mother's Day tribute for Josephine Yaba Dzikunu, lovingly known as Mama Joe.",
+  "private": true,
+  "scripts": {
+    "dev": "npx serve .",
+    "build": "echo 'Static HTML site - no build required'",
+    "lint": "echo 'No linting configured'",
+    "test": "echo 'No tests configured'"
+  },
+  "keywords": [
+    "mothers-day",
+    "tribute"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@vercel/speed-insights": "^2.0.0"
+  }
+}
