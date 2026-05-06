@@ -190,7 +190,6 @@ a {
   border: 1px solid rgba(201, 151, 84, 0.14);
   border-radius: var(--radius-lg);
   box-shadow: var(--shadow);
-  backdrop-filter: blur(14px);
 }
 
 .hero-layout {
@@ -243,6 +242,10 @@ a {
   object-fit: cover;
   object-position: center 18%;
   border-radius: calc(var(--radius-lg) - 12px);
+}
+
+.hero-photo-mobile {
+  object-position: center 12%;
 }
 
 .managed-image {
@@ -505,9 +508,18 @@ button:focus-visible {
   object-position: center top;
 }
 
+.letter-photo-main-mobile {
+  object-position: center 12%;
+}
+
 .letter-photo-accent {
   aspect-ratio: 16 / 10;
   object-position: center 32%;
+}
+
+.letter-photo-accent-mobile {
+  aspect-ratio: 5 / 4;
+  object-position: center 18%;
 }
 
 .gallery-grid {
@@ -535,11 +547,37 @@ button:focus-visible {
 
 .gallery-item img {
   width: 100%;
-  height: 16rem;
+  height: auto;
+  aspect-ratio: 4 / 5;
   object-fit: cover;
   border-radius: calc(var(--radius-md) - 8px);
   cursor: pointer;
   transition: transform 220ms ease, filter 220ms ease;
+}
+
+.gallery-photo-01 {
+  object-position: center 18%;
+}
+
+.gallery-photo-02 {
+  object-position: center 12%;
+}
+
+.gallery-photo-03 {
+  aspect-ratio: 4 / 5;
+  object-position: center 10%;
+}
+
+.gallery-photo-04 {
+  object-position: center 16%;
+}
+
+.gallery-photo-05 {
+  object-position: center 14%;
+}
+
+.gallery-photo-06 {
+  object-position: center 18%;
 }
 
 .gallery-item:hover img,
@@ -555,14 +593,12 @@ button:focus-visible {
 
 .gallery-item-tall img {
   aspect-ratio: 4 / 5;
-  height: auto;
   object-position: center 20%;
 }
 
 .gallery-item-wide img {
-  aspect-ratio: 16 / 10;
-  height: auto;
-  object-position: center 28%;
+  aspect-ratio: 5 / 4;
+  object-position: center 24%;
 }
 
 .timeline {
@@ -607,7 +643,6 @@ button:focus-visible {
   border-radius: 24px;
   box-shadow: 0 12px 26px rgba(125, 82, 37, 0.08);
   padding: 1.1rem;
-  backdrop-filter: blur(8px);
 }
 
 .timeline-photo-frame {
@@ -615,13 +650,16 @@ button:focus-visible {
   border-radius: 18px;
   overflow: hidden;
   background: rgba(255, 246, 234, 0.96);
+  padding: 0.5rem;
 }
 
 .timeline-photo {
   width: 100%;
-  aspect-ratio: 4 / 3;
-  object-fit: cover;
+  aspect-ratio: 16 / 10;
+  object-fit: contain;
   object-position: center;
+  background: linear-gradient(180deg, rgba(255, 252, 247, 0.98), rgba(255, 244, 229, 0.92));
+  border-radius: 14px;
 }
 
 .timeline-year {
@@ -876,7 +914,12 @@ button:focus-visible {
   }
 
   .gallery-item img {
-    height: 19rem;
+    aspect-ratio: 4 / 5;
+  }
+
+  .gallery-photo-03 {
+    aspect-ratio: 16 / 10;
+    object-position: center 18%;
   }
 
   .timeline::before {
@@ -897,6 +940,10 @@ button:focus-visible {
 
   .timeline-content {
     padding: 1.2rem;
+  }
+
+  .timeline-photo {
+    aspect-ratio: 16 / 9;
   }
 
   .timeline-item:nth-child(odd) .timeline-content {
@@ -920,7 +967,7 @@ button:focus-visible {
   }
 
   .gallery-item img {
-    height: 17rem;
+    aspect-ratio: 4 / 5;
   }
 
   .gallery-item-tall {
@@ -928,11 +975,15 @@ button:focus-visible {
   }
 
   .gallery-item-tall img {
-    height: 100%;
+    aspect-ratio: 4 / 5;
   }
 
   .gallery-item-wide {
     grid-column: span 2;
+  }
+
+  .gallery-item-wide img {
+    aspect-ratio: 16 / 10;
   }
 }
 

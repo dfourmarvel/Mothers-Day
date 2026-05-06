@@ -29,6 +29,7 @@ let musicAvailable = true;
 let hasBoundAutoplayRetry = false;
 let autoplayRetryHandler = null;
 let lastFocusedTrigger = null;
+const typingProgress = document.querySelector(".typing-progress");
 
 function getMusicLabel() {
   return musicToggle?.querySelector(".music-label") ?? null;
@@ -55,6 +56,7 @@ function finishTypingLoop() {
   typingText.textContent = finalPhrase;
   updateTypingProgress(typingPhrases.length - 1);
   setTextContent(typingAnnouncement, `Today is for the woman who ${finalPhrase}`);
+  typingProgress?.setAttribute("hidden", "true");
 }
 
 function runTypingEffect() {
@@ -156,32 +158,6 @@ function closeLightbox() {
   lastFocusedTrigger?.focus();
 }
 
-function createFallbackImage(label) {
-  const safeLabel = label
-    .replace(/&/g, "&amp;")
-    .replace(/</g, "&lt;")
-    .replace(/>/g, "&gt;");
-
-  const svg = `
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 1000">
-      <defs>
-        <linearGradient id="g" x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stop-color="#f6d7a8" />
-          <stop offset="100%" stop-color="#e48a56" />
-        </linearGradient>
-      </defs>
-      <rect width="800" height="1000" fill="url(#g)" />
-      <circle cx="400" cy="340" r="120" fill="rgba(255,255,255,0.26)" />
-      <path d="M220 820c36-168 128-252 180-252s144 84 180 252" fill="rgba(255,255,255,0.22)" />
-      <text x="400" y="920" text-anchor="middle" fill="#fff8ef" font-family="Arial, sans-serif" font-size="48">
-        ${safeLabel}
-      </text>
-    </svg>
-  `;
-
-  return `data:image/svg+xml;charset=UTF-8,${encodeURIComponent(svg.replace(/\s+/g, " ").trim())}`;
-}
-
 function getImageContainer(image) {
   return image?.closest(".gallery-item, .hero-photo-frame, .letter-photo-stack, .timeline-photo-frame") ?? null;
 }
@@ -211,24 +187,19 @@ function setupImageFallbacks() {
   if (!siteImages.length) return;
 
   siteImages.forEach((image) => {
-    image.onerror = () => {
-      if (image.dataset.imageError === "true") return;
-
+    image.addEventListener("error", () => {
       image.dataset.imageError = "true";
       image.classList.add("image-fallback");
-      image.onerror = null;
-
-      const fallbackLabel = image.dataset.fallbackLabel || image.alt || "Mama Joe";
-      const originalAlt = image.alt;
-      image.src = createFallbackImage(fallbackLabel);
-      image.alt = originalAlt || fallbackLabel;
       setImageReadyState(image, true);
-
-      if (image.dataset.caption) {
-        image.dataset.caption = `${image.dataset.caption} (Fallback preview shown)`;
-      }
-    };
+    });
   });
+}
+
+function trapLightboxFocus(event) {
+  if (lightbox?.hidden || event.key !== "Tab" || !lightboxClose) return;
+
+  event.preventDefault();
+  lightboxClose.focus();
 }
 
 function setupGallery() {
@@ -254,6 +225,8 @@ function setupGallery() {
       closeLightbox();
     }
   });
+
+  document.addEventListener("keydown", trapLightboxFocus);
 }
 
 function setupSurprise() {
