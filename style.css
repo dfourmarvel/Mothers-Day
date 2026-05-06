@@ -70,6 +70,25 @@ a {
   -webkit-tap-highlight-color: transparent;
 }
 
+.skip-link {
+  position: absolute;
+  top: -100%;
+  left: 1rem;
+  padding: 0.5rem 1.2rem;
+  background: var(--gold);
+  color: #fff;
+  font-weight: 700;
+  font-size: 0.9rem;
+  border-radius: 0 0 10px 10px;
+  text-decoration: none;
+  z-index: 999;
+  transition: top 200ms ease;
+}
+
+.skip-link:focus {
+  top: 0;
+}
+
 .sr-only {
   position: absolute;
   width: 1px;
@@ -121,6 +140,7 @@ a {
 
 .hero {
   min-height: 100vh;
+  min-height: 100svh; /* Fix iOS Safari address-bar layout jump */
   padding: 1rem 1rem 2rem;
   display: flex;
   flex-direction: column;
@@ -245,7 +265,7 @@ a {
 }
 
 .hero-photo-mobile {
-  object-position: center 12%;
+  object-position: center 8%;
 }
 
 .managed-image {
@@ -347,7 +367,7 @@ h3 {
   height: 1.2em;
   background: currentColor;
   display: inline-block;
-  animation: blink 1.05s steps(1) 8;
+  animation: blink 1.05s steps(1) infinite;
 }
 
 .typing-progress {
@@ -508,8 +528,9 @@ button:focus-visible {
   object-position: center top;
 }
 
+/* Full-body Kente portrait — face is at top, show from head down */
 .letter-photo-main-mobile {
-  object-position: center 12%;
+  object-position: center top;
 }
 
 .letter-photo-accent {
@@ -517,9 +538,10 @@ button:focus-visible {
   object-position: center top;
 }
 
+/* Outdoor portrait — keep portrait orientation so face and body are visible */
 .letter-photo-accent-mobile {
-  aspect-ratio: 5 / 4;
-  object-position: center top;
+  aspect-ratio: 4 / 5;
+  object-position: center 15%;
 }
 
 .gallery-grid {
@@ -556,30 +578,28 @@ button:focus-visible {
   transition: transform 220ms ease, filter 220ms ease;
 }
 
-.gallery-photo-01 {
-  object-position: center top;
-}
+/* Gallery 01 — candid portrait, face in upper third, head tilted up */
+.gallery-photo-01 { object-position: center 10%; }
 
-.gallery-photo-02 {
-  object-position: center top;
-}
+/* Gallery 02 — studio portrait, subject centred near top */
+.gallery-photo-02 { object-position: center 8%; }
 
+/* Gallery 03 — landscape scene (green shirt, wide shot) */
 .gallery-photo-03 {
-  aspect-ratio: 4 / 5;
-  object-position: center top;
+  object-position: 30% center;
 }
 
+/* Gallery 04 — LANDSCAPE photo (seated in church, wide shot), subject on left */
 .gallery-photo-04 {
-  object-position: center top;
+  aspect-ratio: 16 / 9;
+  object-position: 20% center;
 }
 
-.gallery-photo-05 {
-  object-position: center top;
-}
+/* Gallery 05 — full-body standing portrait (yellow dress), show head to mid-thigh */
+.gallery-photo-05 { object-position: center 15%; }
 
-.gallery-photo-06 {
-  object-position: center top;
-}
+/* Gallery 06 — full-body seated portrait (yellow dress), show head to knee */
+.gallery-photo-06 { object-position: center 12%; }
 
 .gallery-item:hover img,
 .gallery-trigger:focus-visible img {
@@ -597,8 +617,9 @@ button:focus-visible {
   object-position: center top;
 }
 
+/* On mobile, wide item still shows as landscape to respect the image */
 .gallery-item-wide img {
-  aspect-ratio: 5 / 4;
+  aspect-ratio: 16 / 9;
   object-position: center top;
 }
 
@@ -656,10 +677,34 @@ button:focus-visible {
 
 .timeline-photo {
   width: 100%;
-  aspect-ratio: 3 / 4;
-  object-fit: contain;
-  object-position: center;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  object-position: center top;
   border-radius: 12px;
+}
+
+/* Francis school — landscape family selfie, faces fill upper half */
+.timeline-photo-francis {
+  aspect-ratio: 16 / 9;
+  object-position: center 15%;
+}
+
+/* Nzulezu — portrait group in life jackets, all faces in upper 60% */
+.timeline-photo-nzulezu {
+  aspect-ratio: 4 / 3;
+  object-position: center 20%;
+}
+
+/* School visit — Mama Joe standing top-left behind seated kids */
+.timeline-photo-school {
+  aspect-ratio: 4 / 3;
+  object-position: 15% top;
+}
+
+/* Orphanage — landscape scene, Mama Joe bending over table on the left */
+.timeline-photo-orphanage {
+  aspect-ratio: 4 / 3;
+  object-position: 25% 30%;
 }
 
 .timeline-year {
@@ -942,8 +987,9 @@ button:focus-visible {
     padding: 1.2rem;
   }
 
+  /* Timeline photo responsive overrides — per-image classes take priority */
   .timeline-photo {
-    aspect-ratio: 3 / 4;
+    aspect-ratio: 4 / 3;
   }
 
   .timeline-item:nth-child(odd) .timeline-content {
