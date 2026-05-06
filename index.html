@@ -12,6 +12,11 @@
   <link rel="preload" href="assets/fonts/Manrope-400.ttf" as="font" type="font/ttf" crossorigin>
   <link rel="preload" href="assets/fonts/CormorantGaramond-700.ttf" as="font" type="font/ttf" crossorigin>
   <link rel="stylesheet" href="style.css">
+  <noscript>
+    <style>
+      .reveal { opacity: 1; transform: none; }
+    </style>
+  </noscript>
 </head>
 <body>
   <a class="skip-link" href="#letter">Skip to content</a>
@@ -167,6 +172,7 @@
                 width="720"
                 height="900"
               >
+              <span class="gallery-tap-hint" aria-hidden="true">Tap to view</span>
             </button>
             <figcaption>A graceful portrait of Mama Joe.</figcaption>
           </figure>
@@ -183,6 +189,7 @@
                 width="720"
                 height="900"
               >
+              <span class="gallery-tap-hint" aria-hidden="true">Tap to view</span>
             </button>
             <figcaption>Radiant, warm, and unforgettable.</figcaption>
           </figure>
@@ -191,7 +198,7 @@
             <button class="gallery-trigger" type="button" aria-label="Open image: One smile, and the whole room brightens.">
               <img
                 class="managed-image gallery-photo gallery-photo-03"
-                src="assets/images/mama-joe-gallery-03.jpeg"
+                src="assets/images/optimized/mama-joe-gallery-03.jpeg"
                 alt="Mama Joe smiling during a candid moment"
                 data-caption="One smile, and the whole room brightens."
                 loading="lazy"
@@ -199,6 +206,7 @@
                 width="1280"
                 height="800"
               >
+              <span class="gallery-tap-hint" aria-hidden="true">Tap to view</span>
             </button>
             <figcaption>One smile, and the whole room brightens.</figcaption>
           </figure>
@@ -215,6 +223,7 @@
                 width="720"
                 height="900"
               >
+              <span class="gallery-tap-hint" aria-hidden="true">Tap to view</span>
             </button>
             <figcaption>A lovely portrait full of calm beauty.</figcaption>
           </figure>
@@ -231,6 +240,7 @@
                 width="720"
                 height="900"
               >
+              <span class="gallery-tap-hint" aria-hidden="true">Tap to view</span>
             </button>
             <figcaption>Soft strength and elegance in one frame.</figcaption>
           </figure>
@@ -247,6 +257,7 @@
                 width="720"
                 height="900"
               >
+              <span class="gallery-tap-hint" aria-hidden="true">Tap to view</span>
             </button>
             <figcaption>Joy looks beautiful on you, Mama Joe.</figcaption>
           </figure>
@@ -362,7 +373,7 @@
             Some love deserves a second reveal. Tap the gift and watch a hidden message bloom.
           </p>
           <button class="button button-primary surprise-button" id="surpriseButton" type="button" aria-expanded="false" aria-controls="surpriseMessage">
-            Click for a surprise &#127873;
+            Tap for a surprise &#127873;
           </button>
 
           <div class="surprise-message" id="surpriseMessage" hidden>
