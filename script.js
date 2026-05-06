@@ -2,7 +2,7 @@ const typingText = document.getElementById("typingText");
 const typingAnnouncement = document.getElementById("typingAnnouncement");
 const typingDots = Array.from(document.querySelectorAll(".typing-dot"));
 const revealElements = Array.from(document.querySelectorAll(".reveal"));
-const galleryImages = Array.from(document.querySelectorAll(".gallery-item img"));
+const galleryTriggers = Array.from(document.querySelectorAll(".gallery-trigger"));
 const lightbox = document.getElementById("lightbox");
 const lightboxImage = document.getElementById("lightboxImage");
 const lightboxCaption = document.getElementById("lightboxCaption");
@@ -24,7 +24,11 @@ const typingPhrases = [
 let phraseIndex = 0;
 let characterIndex = 0;
 let isDeleting = false;
+let typingLoopsCompleted = 0;
 let musicAvailable = true;
+let hasBoundAutoplayRetry = false;
+let autoplayRetryHandler = null;
+let lastFocusedTrigger = null;
 
 function getMusicLabel() {
   return musicToggle?.querySelector(".music-label") ?? null;
@@ -44,38 +48,52 @@ function updateTypingProgress(activeIndex) {
   });
 }
 
+function finishTypingLoop() {
+  const finalPhrase = typingPhrases[typingPhrases.length - 1];
+  if (!typingText) return;
+
+  typingText.textContent = finalPhrase;
+  updateTypingProgress(typingPhrases.length - 1);
+  setTextContent(typingAnnouncement, `Today is for the woman who ${finalPhrase}`);
+}
+
 function runTypingEffect() {
   if (!typingText || !typingPhrases.length) return;
+
+  if (typingLoopsCompleted >= 2) {
+    finishTypingLoop();
+    return;
+  }
 
   const currentPhrase = typingPhrases[phraseIndex];
   typingText.textContent = currentPhrase.slice(0, characterIndex);
 
   if (!isDeleting && characterIndex < currentPhrase.length) {
     characterIndex += 1;
-    window.setTimeout(runTypingEffect, 75);
+    window.setTimeout(runTypingEffect, 72);
     return;
   }
 
   if (!isDeleting && characterIndex === currentPhrase.length) {
-    setTextContent(
-      typingAnnouncement,
-      `Today is for the woman who ${currentPhrase}`
-    );
+    setTextContent(typingAnnouncement, `Today is for the woman who ${currentPhrase}`);
     updateTypingProgress(phraseIndex);
     isDeleting = true;
-    window.setTimeout(runTypingEffect, 1800);
+    window.setTimeout(runTypingEffect, 1600);
     return;
   }
 
   if (isDeleting && characterIndex > 0) {
     characterIndex -= 1;
-    window.setTimeout(runTypingEffect, 38);
+    window.setTimeout(runTypingEffect, 34);
     return;
   }
 
   isDeleting = false;
+  if (phraseIndex === typingPhrases.length - 1) {
+    typingLoopsCompleted += 1;
+  }
   phraseIndex = (phraseIndex + 1) % typingPhrases.length;
-  window.setTimeout(runTypingEffect, 220);
+  window.setTimeout(runTypingEffect, 180);
 }
 
 function setupRevealAnimations() {
@@ -96,15 +114,15 @@ function setupRevealAnimations() {
       });
     },
     {
-      threshold: 0.16,
-      rootMargin: "0px 0px -40px 0px"
+      threshold: 0.18,
+      rootMargin: "0px 0px -32px 0px"
     }
   );
 
   revealElements.forEach((element) => observer.observe(element));
 }
 
-function openLightbox(image) {
+function openLightbox(image, trigger = null) {
   if (
     !image ||
     image.dataset.imageError === "true" ||
@@ -115,20 +133,27 @@ function openLightbox(image) {
     return;
   }
 
+  lastFocusedTrigger = trigger;
   lightboxImage.src = image.src;
   lightboxImage.alt = image.alt;
   lightboxCaption.textContent = image.dataset.caption || image.alt;
+  lightbox.setAttribute("role", "dialog");
+  lightbox.setAttribute("aria-modal", "true");
+  lightbox.setAttribute("aria-hidden", "false");
   lightbox.hidden = false;
   document.body.style.overflow = "hidden";
+  lightboxClose?.focus();
 }
 
 function closeLightbox() {
   if (!lightbox || !lightboxImage) return;
 
   lightbox.hidden = true;
+  lightbox.setAttribute("aria-hidden", "true");
   lightboxImage.src = "";
   lightboxImage.alt = "";
   document.body.style.overflow = "";
+  lastFocusedTrigger?.focus();
 }
 
 function createFallbackImage(label) {
@@ -158,7 +183,7 @@ function createFallbackImage(label) {
 }
 
 function getImageContainer(image) {
-  return image?.closest(".gallery-item, .hero-photo-frame, .letter-photo-stack") ?? null;
+  return image?.closest(".gallery-item, .hero-photo-frame, .letter-photo-stack, .timeline-photo-frame") ?? null;
 }
 
 function setImageReadyState(image, isLoaded) {
@@ -194,8 +219,9 @@ function setupImageFallbacks() {
       image.onerror = null;
 
       const fallbackLabel = image.dataset.fallbackLabel || image.alt || "Mama Joe";
+      const originalAlt = image.alt;
       image.src = createFallbackImage(fallbackLabel);
-      image.alt = `${fallbackLabel} fallback image`;
+      image.alt = originalAlt || fallbackLabel;
       setImageReadyState(image, true);
 
       if (image.dataset.caption) {
@@ -206,10 +232,13 @@ function setupImageFallbacks() {
 }
 
 function setupGallery() {
-  if (!galleryImages.length || !lightbox || !lightboxClose) return;
+  if (!galleryTriggers.length || !lightbox || !lightboxClose) return;
 
-  galleryImages.forEach((image) => {
-    image.addEventListener("click", () => openLightbox(image));
+  galleryTriggers.forEach((trigger) => {
+    const image = trigger.querySelector("img");
+    if (!image) return;
+
+    trigger.addEventListener("click", () => openLightbox(image, trigger));
   });
 
   lightboxClose.addEventListener("click", closeLightbox);
@@ -232,7 +261,8 @@ function setupSurprise() {
 
   surpriseButton.addEventListener("click", () => {
     const isHidden = surpriseMessage.hidden;
-    surpriseMessage.hidden = !isHidden ? true : false;
+    surpriseMessage.hidden = !isHidden;
+    surpriseButton.setAttribute("aria-expanded", String(isHidden));
     surpriseButton.textContent = isHidden
       ? "Hide the surprise"
       : "Click for a surprise \uD83C\uDF81";
@@ -254,26 +284,70 @@ function setMusicUnavailable() {
   setTextContent(getMusicLabel(), "No audio file");
 }
 
-async function toggleMusic() {
+function syncMusicToggle(isPlaying) {
+  if (!musicToggle) return;
+
+  musicToggle.classList.toggle("is-playing", isPlaying);
+  musicToggle.setAttribute("aria-pressed", String(isPlaying));
+  setTextContent(getMusicLabel(), isPlaying ? "Music playing" : "Tap to play music");
+}
+
+function bindAutoplayRetry() {
+  if (hasBoundAutoplayRetry || !backgroundMusic || !musicAvailable) return;
+
+  hasBoundAutoplayRetry = true;
+
+  autoplayRetryHandler = async () => {
+    const started = await playBackgroundMusic();
+
+    if (started) {
+      unbindAutoplayRetry();
+    }
+  };
+
+  document.addEventListener("click", autoplayRetryHandler, { passive: true });
+  document.addEventListener("touchstart", autoplayRetryHandler, { passive: true });
+  document.addEventListener("keydown", autoplayRetryHandler);
+}
+
+function unbindAutoplayRetry() {
+  if (!autoplayRetryHandler) return;
+
+  document.removeEventListener("click", autoplayRetryHandler);
+  document.removeEventListener("touchstart", autoplayRetryHandler);
+  document.removeEventListener("keydown", autoplayRetryHandler);
+  autoplayRetryHandler = null;
+  hasBoundAutoplayRetry = false;
+}
+
+async function playBackgroundMusic() {
+  if (!backgroundMusic || !musicAvailable) return false;
+
+  try {
+    await backgroundMusic.play();
+    syncMusicToggle(true);
+    return true;
+  } catch (error) {
+    console.warn("Background music autoplay was blocked until user interaction.", error);
+    bindAutoplayRetry();
+    musicToggle?.classList.remove("is-playing");
+    musicToggle?.setAttribute("aria-pressed", "false");
+    setTextContent(getMusicLabel(), "Tap to play music");
+    return false;
+  }
+}
+
+function toggleMusic() {
   if (!backgroundMusic || !musicToggle || !musicAvailable) return;
 
   if (backgroundMusic.paused) {
-    try {
-      await backgroundMusic.play();
-      musicToggle.classList.add("is-playing");
-      musicToggle.setAttribute("aria-pressed", "true");
-      setTextContent(getMusicLabel(), "Pause music");
-    } catch (error) {
-      setMusicUnavailable();
-      console.warn("Background music could not play yet.", error);
-    }
+    playBackgroundMusic();
     return;
   }
 
+  unbindAutoplayRetry();
+  syncMusicToggle(false);
   backgroundMusic.pause();
-  musicToggle.classList.remove("is-playing");
-  musicToggle.setAttribute("aria-pressed", "false");
-  setTextContent(getMusicLabel(), "Play music");
 }
 
 function setupMusicToggle() {
@@ -283,9 +357,12 @@ function setupMusicToggle() {
 
   backgroundMusic.addEventListener("pause", () => {
     if (!musicAvailable) return;
-    musicToggle.classList.remove("is-playing");
-    musicToggle.setAttribute("aria-pressed", "false");
-    setTextContent(getMusicLabel(), "Play music");
+    syncMusicToggle(false);
+  });
+
+  backgroundMusic.addEventListener("play", () => {
+    if (!musicAvailable) return;
+    syncMusicToggle(true);
   });
 
   backgroundMusic.addEventListener("error", setMusicUnavailable);
@@ -303,6 +380,8 @@ function setupMusicToggle() {
       setMusicUnavailable();
     }
   }, 1200);
+
+  playBackgroundMusic();
 }
 
 runTypingEffect();

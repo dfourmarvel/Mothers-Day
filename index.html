@@ -17,12 +17,12 @@
     <div class="ambient ambient-one"></div>
     <div class="ambient ambient-two"></div>
 
-    <header class="hero" id="top" role="banner">
-      <nav class="topbar">
+    <header class="hero" id="top">
+      <nav class="topbar" aria-label="Primary">
         <a class="brand" href="#top">Mama Joe</a>
-        <button class="music-toggle" id="musicToggle" type="button" aria-pressed="false">
+        <button class="music-toggle" id="musicToggle" type="button" aria-pressed="false" aria-label="Background music">
           <span class="music-icon">&#9834;</span>
-          <span class="music-label">Play music</span>
+          <span class="music-label">Tap to play music</span>
         </button>
       </nav>
 
@@ -32,14 +32,14 @@
             <p class="eyebrow">For Josephine Yaba Dzikunu</p>
             <h1>Happy Mother&rsquo;s Day Mama Joe <span class="heart">&#128155;</span></h1>
             <p class="hero-lead">
-              You are home, laughter, wisdom, strength, and softness all wrapped into one beautiful soul.
+              You are the kind of woman who brings warmth into a room before you even speak, and love into a memory long after the day is over.
             </p>
             <p class="typing-line">
               <span class="typing-prefix">Today is for the woman who</span>
               <span class="typing-text" id="typingText" aria-hidden="true"></span>
               <span class="sr-only" id="typingAnnouncement" aria-live="polite" aria-atomic="true"></span>
             </p>
-            <div class="typing-progress" id="typingProgress" aria-hidden="true">
+            <div class="typing-progress" aria-hidden="true">
               <span class="typing-dot is-active"></span>
               <span class="typing-dot"></span>
               <span class="typing-dot"></span>
@@ -71,7 +71,7 @@
       </div>
     </header>
 
-    <main role="main">
+    <main>
       <section class="section letter-section" id="letter">
         <div class="section-heading reveal">
           <p class="eyebrow">A letter from the heart</p>
@@ -86,35 +86,34 @@
               <div class="letter-body">
                 <p>
                   Today, I just want to pause and say thank you. Thank you for being the kind of mother
-                  whose love doesn&rsquo;t whisper, it fills every room. You&rsquo;ve carried so much with grace,
-                  given so much with joy, and somehow still manage to light up hearts with your warmth,
-                  your humor, and that unforgettable Mama Joe energy.
+                  whose love is never small or half-given. You show up fully, with warmth in your voice,
+                  care in your hands, and a heart that somehow always makes room for one more person.
                 </p>
 
                 <p>
-                  You are strength without harshness, wisdom without pride, and care without condition.
-                  You have this beautiful way of making people feel safe, seen, fed, and loved, sometimes
-                  all at once. It&rsquo;s honestly a superpower. If comfort had a face, I&rsquo;m pretty sure it
-                  would look a lot like you.
+                  Some of my favorite memories of you are not only the big occasions, but the way you make
+                  ordinary moments feel unforgettable. A school visit becomes joy because you came carrying
+                  food for everyone. A family outing becomes brighter because your presence fills it with
+                  laughter. Even a first day somewhere new feels easier when you are there.
                 </p>
 
                 <p>
-                  I admire the woman you are. The way you love deeply. The way you show up. The way you
-                  keep going. The way you can be soft and strong at the same time. And yes, the way you
-                  can be playful too, because life around you is never just ordinary. It has flavor,
-                  sparkle, and a little bit of delicious drama in the best possible way.
+                  I admire how naturally you care for people. You do not love in theory, you love in action.
+                  You feed, you check in, you encourage, you give, and you make people feel seen. That is
+                  part of what makes you so beautiful. Your kindness does not stay in words, it becomes
+                  something real that people can feel and remember.
                 </p>
 
                 <p>
-                  Thank you for every sacrifice no one saw, every prayer spoken in quiet, every word of
-                  encouragement, every lesson taught with patience, and every memory made simply by being
-                  yourself. You are deeply loved, deeply appreciated, and deeply celebrated.
+                  Thank you for every quiet sacrifice, every prayer, every effort, and every generous act
+                  that has shaped the people around you. Thank you for being soft without being weak,
+                  strong without losing your tenderness, and joyful in a way that makes others feel welcome.
                 </p>
 
                 <p>
-                  If I could wrap gratitude in gold and tie it with sunlight, I&rsquo;d place it right in your
-                  hands today. But for now, let this page say what words can only begin to hold: I love
-                  you, I honor you, and I thank God for you.
+                  If I could gather all the gratitude, pride, and love you deserve into one gift, it still
+                  would not fully measure what you mean. So let this page say it simply and sincerely:
+                  I love you deeply, I honor the woman you are, and I thank God for the blessing of you.
                 </p>
 
                 <p class="letter-close">
@@ -158,92 +157,104 @@
 
         <div class="gallery-grid">
           <figure class="gallery-item gallery-item-tall reveal">
-            <img
-              class="managed-image"
-              src="assets/images/optimized/mama-joe-gallery-01.jpeg"
-              alt="Mama Joe in a poised portrait"
-              data-caption="A graceful portrait of Mama Joe."
-              data-fallback-label="Memory 1"
-              loading="lazy"
-              decoding="async"
-              width="720"
-              height="900"
-            >
+            <button class="gallery-trigger" type="button" aria-label="Open image: A graceful portrait of Mama Joe.">
+              <img
+                class="managed-image"
+                src="assets/images/optimized/mama-joe-gallery-01.jpeg"
+                alt="Mama Joe in a poised portrait"
+                data-caption="A graceful portrait of Mama Joe."
+                data-fallback-label="Memory 1"
+                loading="lazy"
+                decoding="async"
+                width="720"
+                height="900"
+              >
+            </button>
             <figcaption>A graceful portrait of Mama Joe.</figcaption>
           </figure>
 
           <figure class="gallery-item reveal">
-            <img
-              class="managed-image"
-              src="assets/images/optimized/mama-joe-gallery-02.jpeg"
-              alt="Mama Joe looking radiant in a portrait"
-              data-caption="Radiant, warm, and unforgettable."
-              data-fallback-label="Memory 2"
-              loading="lazy"
-              decoding="async"
-              width="720"
-              height="900"
-            >
+            <button class="gallery-trigger" type="button" aria-label="Open image: Radiant, warm, and unforgettable.">
+              <img
+                class="managed-image"
+                src="assets/images/optimized/mama-joe-gallery-02.jpeg"
+                alt="Mama Joe looking radiant in a portrait"
+                data-caption="Radiant, warm, and unforgettable."
+                data-fallback-label="Memory 2"
+                loading="lazy"
+                decoding="async"
+                width="720"
+                height="900"
+              >
+            </button>
             <figcaption>Radiant, warm, and unforgettable.</figcaption>
           </figure>
 
           <figure class="gallery-item gallery-item-wide reveal">
-            <img
-              class="managed-image"
-              src="assets/images/optimized/mama-joe-gallery-03.jpeg"
-              alt="Mama Joe smiling during a candid moment"
-              data-caption="One smile, and the whole room brightens."
-              data-fallback-label="Memory 3"
-              loading="lazy"
-              decoding="async"
-              width="1280"
-              height="800"
-            >
+            <button class="gallery-trigger" type="button" aria-label="Open image: One smile, and the whole room brightens.">
+              <img
+                class="managed-image"
+                src="assets/images/optimized/mama-joe-gallery-03.jpeg"
+                alt="Mama Joe smiling during a candid moment"
+                data-caption="One smile, and the whole room brightens."
+                data-fallback-label="Memory 3"
+                loading="lazy"
+                decoding="async"
+                width="1280"
+                height="800"
+              >
+            </button>
             <figcaption>One smile, and the whole room brightens.</figcaption>
           </figure>
 
           <figure class="gallery-item reveal">
-            <img
-              class="managed-image"
-              src="assets/images/optimized/mama-joe-gallery-04.jpeg"
-              alt="Mama Joe in a lovely portrait pose"
-              data-caption="A lovely portrait full of calm beauty."
-              data-fallback-label="Memory 4"
-              loading="lazy"
-              decoding="async"
-              width="720"
-              height="900"
-            >
+            <button class="gallery-trigger" type="button" aria-label="Open image: A lovely portrait full of calm beauty.">
+              <img
+                class="managed-image"
+                src="assets/images/optimized/mama-joe-gallery-04.jpeg"
+                alt="Mama Joe in a lovely portrait pose"
+                data-caption="A lovely portrait full of calm beauty."
+                data-fallback-label="Memory 4"
+                loading="lazy"
+                decoding="async"
+                width="720"
+                height="900"
+              >
+            </button>
             <figcaption>A lovely portrait full of calm beauty.</figcaption>
           </figure>
 
           <figure class="gallery-item reveal">
-            <img
-              class="managed-image"
-              src="assets/images/optimized/mama-joe-gallery-05.jpeg"
-              alt="Mama Joe in another warm portrait"
-              data-caption="Soft strength and elegance in one frame."
-              data-fallback-label="Memory 5"
-              loading="lazy"
-              decoding="async"
-              width="720"
-              height="900"
-            >
+            <button class="gallery-trigger" type="button" aria-label="Open image: Soft strength and elegance in one frame.">
+              <img
+                class="managed-image"
+                src="assets/images/optimized/mama-joe-gallery-05.jpeg"
+                alt="Mama Joe in another warm portrait"
+                data-caption="Soft strength and elegance in one frame."
+                data-fallback-label="Memory 5"
+                loading="lazy"
+                decoding="async"
+                width="720"
+                height="900"
+              >
+            </button>
             <figcaption>Soft strength and elegance in one frame.</figcaption>
           </figure>
 
           <figure class="gallery-item gallery-item-tall reveal">
-            <img
-              class="managed-image"
-              src="assets/images/optimized/mama-joe-gallery-06.jpeg"
-              alt="Mama Joe in a beautiful portrait with a joyful expression"
-              data-caption="Joy looks beautiful on you, Mama Joe."
-              data-fallback-label="Memory 6"
-              loading="lazy"
-              decoding="async"
-              width="720"
-              height="900"
-            >
+            <button class="gallery-trigger" type="button" aria-label="Open image: Joy looks beautiful on you, Mama Joe.">
+              <img
+                class="managed-image"
+                src="assets/images/optimized/mama-joe-gallery-06.jpeg"
+                alt="Mama Joe in a beautiful portrait with a joyful expression"
+                data-caption="Joy looks beautiful on you, Mama Joe."
+                data-fallback-label="Memory 6"
+                loading="lazy"
+                decoding="async"
+                width="720"
+                height="900"
+              >
+            </button>
             <figcaption>Joy looks beautiful on you, Mama Joe.</figcaption>
           </figure>
         </div>
@@ -252,18 +263,30 @@
       <section class="section timeline-section" id="memories">
         <div class="section-heading reveal">
           <p class="eyebrow">The story so far</p>
-          <h2>Little memories that say so much</h2>
+          <h2>Little moments that still shine</h2>
         </div>
 
         <div class="timeline">
           <article class="timeline-item reveal">
             <div class="timeline-dot"></div>
             <div class="timeline-content">
-              <p class="timeline-year">A cherished beginning</p>
-              <h3>The warmth only you can give</h3>
+              <figure class="timeline-photo-frame">
+                <img
+                  class="timeline-photo managed-image"
+                  src="assets/images/timeline/francis-school-first-time.jpeg"
+                  alt="Mama Joe at Francis School for the first time"
+                  data-fallback-label="Francis School memory"
+                  loading="lazy"
+                  decoding="async"
+                  width="900"
+                  height="1200"
+                >
+              </figure>
+              <p class="timeline-year">First-time wonder</p>
+              <h3>At Francis School for the first time</h3>
               <p>
-                Placeholder memory: a moment that reminds everyone how Mama Joe turns ordinary days
-                into safe, joyful places.
+                Even a first visit feels gentler when you are there. This memory carries the calm,
+                curiosity, and reassurance you bring into unfamiliar places.
               </p>
             </div>
           </article>
@@ -271,11 +294,23 @@
           <article class="timeline-item reveal">
             <div class="timeline-dot"></div>
             <div class="timeline-content">
-              <p class="timeline-year">A laugh we still remember</p>
-              <h3>The day joy filled the whole room</h3>
+              <figure class="timeline-photo-frame">
+                <img
+                  class="timeline-photo managed-image"
+                  src="assets/images/timeline/family-visit-nzulezu.jpeg"
+                  alt="Mama Joe during a family visit to Nzulezu"
+                  data-fallback-label="Nzulezu family visit"
+                  loading="lazy"
+                  decoding="async"
+                  width="900"
+                  height="1200"
+                >
+              </figure>
+              <p class="timeline-year">Family joy</p>
+              <h3>Our family visit to Nzulezu</h3>
               <p>
-                Placeholder memory: a funny or sweet story that captures her playful spirit and big,
-                unforgettable presence.
+                The place was beautiful, but what made it truly memorable was sharing it with you.
+                Your presence turned the outing into warmth, laughter, and togetherness.
               </p>
             </div>
           </article>
@@ -283,11 +318,23 @@
           <article class="timeline-item reveal">
             <div class="timeline-dot"></div>
             <div class="timeline-content">
-              <p class="timeline-year">A lesson for life</p>
-              <h3>Wisdom wrapped in love</h3>
+              <figure class="timeline-photo-frame">
+                <img
+                  class="timeline-photo managed-image"
+                  src="assets/images/timeline/school-visit-food-for-friends.jpeg"
+                  alt="Mama Joe visiting school and bringing food for friends"
+                  data-fallback-label="School visit with food"
+                  loading="lazy"
+                  decoding="async"
+                  width="900"
+                  height="1200"
+                >
+              </figure>
+              <p class="timeline-year">Love in action</p>
+              <h3>Bringing food for all my friends</h3>
               <p>
-                Placeholder memory: a piece of advice, a prayer, or a quiet act of care that stayed
-                with you long after the moment passed.
+                This memory says so much about you. You did not just visit, you arrived with generosity,
+                making sure everyone around me felt included, seen, and cared for.
               </p>
             </div>
           </article>
@@ -295,11 +342,23 @@
           <article class="timeline-item reveal">
             <div class="timeline-dot"></div>
             <div class="timeline-content">
-              <p class="timeline-year">Today and always</p>
-              <h3>Your love keeps unfolding</h3>
+              <figure class="timeline-photo-frame">
+                <img
+                  class="timeline-photo managed-image"
+                  src="assets/images/timeline/orphanage-visit-essentials.jpeg"
+                  alt="Mama Joe visiting an orphanage with food and essentials"
+                  data-fallback-label="Orphanage visit"
+                  loading="lazy"
+                  decoding="async"
+                  width="900"
+                  height="1200"
+                >
+              </figure>
+              <p class="timeline-year">A giving heart</p>
+              <h3>Visiting the orphanage with essentials</h3>
               <p>
-                Placeholder memory: a present-day reminder that her kindness, strength, and beauty are
-                still shaping the people around her.
+                Your kindness always reaches beyond your own home. Moments like this show how naturally
+                you give, serve, and pour love into people who need it most.
               </p>
             </div>
           </article>
@@ -313,7 +372,7 @@
           <p>
             Some love deserves a second reveal. Tap the gift and watch a hidden message bloom.
           </p>
-          <button class="button button-primary surprise-button" id="surpriseButton" type="button">
+          <button class="button button-primary surprise-button" id="surpriseButton" type="button" aria-expanded="false" aria-controls="surpriseMessage">
             Click for a surprise &#127873;
           </button>
 
@@ -339,9 +398,9 @@
     </footer>
   </div>
 
-  <div class="lightbox" id="lightbox" hidden>
+  <div class="lightbox" id="lightbox" hidden aria-hidden="true">
     <button class="lightbox-close" id="lightboxClose" type="button" aria-label="Close image preview">
-      ×
+      &times;
     </button>
     <figure class="lightbox-content">
       <img id="lightboxImage" src="" alt="">
@@ -349,9 +408,8 @@
     </figure>
   </div>
 
-  <!-- Replace the audio file path below with your real music file later -->
-  <audio id="backgroundMusic" loop preload="none">
-    <source src="assets/mama-joe-song.mp3" type="audio/mpeg">
+  <audio id="backgroundMusic" loop preload="metadata">
+    <source src="assets/audio/sweet-mother.mp3" type="audio/mpeg">
   </audio>
 
   <script src="script.js"></script>
