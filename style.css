@@ -240,7 +240,7 @@ a {
   width: 100%;
   aspect-ratio: 4 / 5;
   object-fit: cover;
-  object-position: center 18%;
+  object-position: center top;
   border-radius: calc(var(--radius-lg) - 12px);
 }
 
@@ -514,12 +514,12 @@ button:focus-visible {
 
 .letter-photo-accent {
   aspect-ratio: 16 / 10;
-  object-position: center 32%;
+  object-position: center top;
 }
 
 .letter-photo-accent-mobile {
   aspect-ratio: 5 / 4;
-  object-position: center 18%;
+  object-position: center top;
 }
 
 .gallery-grid {
@@ -550,34 +550,35 @@ button:focus-visible {
   height: auto;
   aspect-ratio: 4 / 5;
   object-fit: cover;
+  object-position: center top;
   border-radius: calc(var(--radius-md) - 8px);
   cursor: pointer;
   transition: transform 220ms ease, filter 220ms ease;
 }
 
 .gallery-photo-01 {
-  object-position: center 18%;
+  object-position: center top;
 }
 
 .gallery-photo-02 {
-  object-position: center 12%;
+  object-position: center top;
 }
 
 .gallery-photo-03 {
   aspect-ratio: 4 / 5;
-  object-position: center 10%;
+  object-position: center top;
 }
 
 .gallery-photo-04 {
-  object-position: center 16%;
+  object-position: center top;
 }
 
 .gallery-photo-05 {
-  object-position: center 14%;
+  object-position: center top;
 }
 
 .gallery-photo-06 {
-  object-position: center 18%;
+  object-position: center top;
 }
 
 .gallery-item:hover img,
@@ -593,12 +594,12 @@ button:focus-visible {
 
 .gallery-item-tall img {
   aspect-ratio: 4 / 5;
-  object-position: center 20%;
+  object-position: center top;
 }
 
 .gallery-item-wide img {
   aspect-ratio: 5 / 4;
-  object-position: center 24%;
+  object-position: center top;
 }
 
 .timeline {
@@ -642,24 +643,23 @@ button:focus-visible {
   border: 1px solid rgba(201, 151, 84, 0.11);
   border-radius: 24px;
   box-shadow: 0 12px 26px rgba(125, 82, 37, 0.08);
-  padding: 1.1rem;
+  padding: 0.8rem;
 }
 
 .timeline-photo-frame {
-  margin: 0 0 0.95rem;
+  margin: 0 0 0.6rem;
   border-radius: 18px;
   overflow: hidden;
   background: rgba(255, 246, 234, 0.96);
-  padding: 0.5rem;
+  padding: 0.25rem;
 }
 
 .timeline-photo {
   width: 100%;
-  aspect-ratio: 16 / 10;
+  aspect-ratio: 3 / 4;
   object-fit: contain;
   object-position: center;
-  background: linear-gradient(180deg, rgba(255, 252, 247, 0.98), rgba(255, 244, 229, 0.92));
-  border-radius: 14px;
+  border-radius: 12px;
 }
 
 .timeline-year {
@@ -943,7 +943,7 @@ button:focus-visible {
   }
 
   .timeline-photo {
-    aspect-ratio: 16 / 9;
+    aspect-ratio: 3 / 4;
   }
 
   .timeline-item:nth-child(odd) .timeline-content {
