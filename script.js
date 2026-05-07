@@ -30,6 +30,7 @@ let hasBoundAutoplayRetry = false;
 let autoplayRetryHandler = null;
 let lastFocusedTrigger = null;
 const typingProgress = document.querySelector(".typing-progress");
+const touchDevice = window.matchMedia("(pointer: coarse)").matches;
 
 function getMusicLabel() {
   return musicToggle?.querySelector(".music-label") ?? null;
@@ -198,6 +199,7 @@ function setupImageFallbacks() {
 function trapLightboxFocus(event) {
   if (lightbox?.hidden || event.key !== "Tab" || !lightboxClose) return;
 
+  // Keep focus in modal while there is a single focus target.
   event.preventDefault();
   lightboxClose.focus();
 }
@@ -238,7 +240,7 @@ function setupSurprise() {
     surpriseButton.setAttribute("aria-expanded", String(isHidden));
     surpriseButton.textContent = isHidden
       ? "Hide the surprise"
-      : "Click for a surprise \uD83C\uDF81";
+      : "Tap for a surprise \uD83C\uDF81";
 
     if (isHidden) {
       surpriseMessage.scrollIntoView({ behavior: "smooth", block: "nearest" });
@@ -279,7 +281,9 @@ function bindAutoplayRetry() {
   };
 
   document.addEventListener("click", autoplayRetryHandler, { passive: true });
-  document.addEventListener("touchstart", autoplayRetryHandler, { passive: true });
+  if (touchDevice) {
+    document.addEventListener("touchstart", autoplayRetryHandler, { passive: true });
+  }
   document.addEventListener("keydown", autoplayRetryHandler);
 }
 
@@ -287,7 +291,9 @@ function unbindAutoplayRetry() {
   if (!autoplayRetryHandler) return;
 
   document.removeEventListener("click", autoplayRetryHandler);
-  document.removeEventListener("touchstart", autoplayRetryHandler);
+  if (touchDevice) {
+    document.removeEventListener("touchstart", autoplayRetryHandler);
+  }
   document.removeEventListener("keydown", autoplayRetryHandler);
   autoplayRetryHandler = null;
   hasBoundAutoplayRetry = false;

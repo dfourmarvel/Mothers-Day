@@ -308,12 +308,12 @@ h3 {
 }
 
 h1 {
-  font-size: clamp(2.7rem, 10vw, 5.2rem);
+  font-size: clamp(2.2rem, 9vw, 5.2rem);
   margin-bottom: 1rem;
 }
 
 h2 {
-  font-size: clamp(2.2rem, 8vw, 3.7rem);
+  font-size: clamp(1.9rem, 7.5vw, 3.7rem);
   margin-bottom: 0.8rem;
 }
 
@@ -635,6 +635,11 @@ button:focus-visible {
 
 /* Gallery 06 — full-body seated portrait (yellow dress), show head to knee */
 .gallery-photo-06 { object-position: center 12%; }
+
+.gallery-photo-full-mobile {
+  object-fit: contain;
+  background: rgba(255, 244, 229, 0.85);
+}
 
 .gallery-item:hover img,
 .gallery-trigger:focus-visible img {
@@ -1082,9 +1087,58 @@ button:focus-visible {
 }
 
 @media (max-width: 480px) {
+  .section {
+    padding-top: 1.4rem;
+  }
+
+  .section + .section {
+    margin-top: 1.4rem;
+  }
+
+  .letter-card,
+  .surprise-card,
+  .hero-card {
+    padding: 1.25rem;
+  }
+
+  .gallery-item figcaption,
+  .timeline-content p:last-child {
+    line-height: 1.6;
+  }
+
   .ambient {
     filter: blur(14px);
     opacity: 0.18;
+  }
+
+  .hero-photo {
+    aspect-ratio: 3 / 4;
+    object-fit: contain;
+    background: rgba(255, 244, 229, 0.85);
+  }
+
+  .letter-photo-main-mobile,
+  .letter-photo-accent-mobile,
+  .gallery-photo-full-mobile,
+  .timeline-photo {
+    object-fit: contain;
+    background: rgba(255, 244, 229, 0.85);
+  }
+
+  .letter-photo-main-mobile {
+    aspect-ratio: 3 / 4;
+  }
+
+  .letter-photo-accent-mobile {
+    aspect-ratio: 3 / 4;
+  }
+
+  .timeline-photo {
+    aspect-ratio: 4 / 3;
+  }
+
+  .timeline-photo-frame {
+    max-height: none;
   }
 }
 
