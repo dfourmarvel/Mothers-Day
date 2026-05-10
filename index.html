@@ -26,8 +26,21 @@
     </style>
   </noscript>
 </head>
-<body>
+<body class="intro-active">
   <a class="skip-link" href="#letter">Skip to content</a>
+  <div class="opening-surprise" id="openingSurprise" role="dialog" aria-modal="true" aria-labelledby="openingSurpriseTitle">
+    <div class="opening-surprise-card">
+      <p class="eyebrow">A family surprise</p>
+      <h2 id="openingSurpriseTitle">Mama Joe, this is for you</h2>
+      <p>
+        Tap the button below to open your Mother&rsquo;s Day surprise from all of us.
+      </p>
+      <button class="button button-primary opening-surprise-button" id="surpriseButton" type="button">
+        Open your surprise &#127881;
+      </button>
+      <div class="party-poppers" id="partyPoppers" aria-hidden="true"></div>
+    </div>
+  </div>
   <div class="page-shell">
     <div class="ambient ambient-one"></div>
     <div class="ambient ambient-two"></div>
@@ -390,16 +403,13 @@
 
       <section class="section surprise-section" id="surprise">
         <div class="surprise-card reveal">
-          <p class="eyebrow">One more thing</p>
-          <h2>A little surprise for Mama Joe</h2>
+          <p class="eyebrow">Opened with love</p>
+          <h2>Your surprise from all of us</h2>
           <p>
-            Some love deserves a second reveal. Tap the gift and watch a message from all of us bloom.
+            The celebration starts the moment your surprise opens, and this message stays here waiting for you.
           </p>
-          <button class="button button-primary surprise-button" id="surpriseButton" type="button" aria-expanded="false" aria-controls="surpriseMessage">
-            Tap for a surprise &#127873;
-          </button>
 
-          <div class="surprise-message" id="surpriseMessage" hidden>
+          <div class="surprise-message" id="surpriseMessage">
             <div class="sparkles" aria-hidden="true">
               <span></span>
               <span></span>
@@ -431,7 +441,7 @@
     </figure>
   </div>
 
-  <audio id="backgroundMusic" loop preload="auto" autoplay>
+  <audio id="backgroundMusic" loop preload="auto">
     <source src="assets/audio/sweet-mother.mp3" type="audio/mpeg">
   </audio>
 

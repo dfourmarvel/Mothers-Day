@@ -7,8 +7,9 @@ const lightbox = document.getElementById("lightbox");
 const lightboxImage = document.getElementById("lightboxImage");
 const lightboxCaption = document.getElementById("lightboxCaption");
 const lightboxClose = document.getElementById("lightboxClose");
+const openingSurprise = document.getElementById("openingSurprise");
 const surpriseButton = document.getElementById("surpriseButton");
-const surpriseMessage = document.getElementById("surpriseMessage");
+const partyPoppers = document.getElementById("partyPoppers");
 const musicToggle = document.getElementById("musicToggle");
 const backgroundMusic = document.getElementById("backgroundMusic");
 const siteImages = Array.from(document.querySelectorAll("img"));
@@ -232,20 +233,110 @@ function setupGallery() {
 }
 
 function setupSurprise() {
-  if (!surpriseButton || !surpriseMessage) return;
+  if (!openingSurprise || !surpriseButton) return;
 
-  surpriseButton.addEventListener("click", () => {
-    const isHidden = surpriseMessage.hidden;
-    surpriseMessage.hidden = !isHidden;
-    surpriseButton.setAttribute("aria-expanded", String(isHidden));
-    surpriseButton.textContent = isHidden
-      ? "Hide the surprise"
-      : "Tap for a surprise \uD83C\uDF81";
+  surpriseButton.addEventListener("click", async () => {
+    launchPartyPoppers();
+    await playBackgroundMusic();
+    openingSurprise.classList.add("is-leaving");
+    document.body.classList.remove("intro-active");
 
-    if (isHidden) {
-      surpriseMessage.scrollIntoView({ behavior: "smooth", block: "nearest" });
+    window.setTimeout(() => {
+      openingSurprise.hidden = true;
+      openingSurprise.setAttribute("aria-hidden", "true");
+      musicToggle?.focus();
+    }, 700);
+  });
+}
+
+function launchPartyPoppers() {
+  if (!partyPoppers) return;
+
+  partyPoppers.innerHTML = "";
+
+  const colors = ["#d8a24b", "#ec8b4f", "#f4c95d", "#ffffff", "#b77c23"];
+  const shapes = [
+    { width: "0.65rem", height: "1.2rem", radius: "999px" },
+    { width: "0.9rem", height: "0.9rem", radius: "50%" },
+    { width: "1rem", height: "0.5rem", radius: "999px" },
+    { width: "0.45rem", height: "1.35rem", radius: "999px" }
+  ];
+  const cannons = [
+    {
+      count: 42,
+      originX: "12%",
+      originY: "78%",
+      angleStart: -1.25,
+      angleSpread: 1.05,
+      minDistance: 260,
+      distanceRange: 560,
+      liftBase: 220,
+      liftRange: 340,
+      driftRange: 120
+    },
+    {
+      count: 42,
+      originX: "88%",
+      originY: "78%",
+      angleStart: -2.95,
+      angleSpread: 1.05,
+      minDistance: 260,
+      distanceRange: 560,
+      liftBase: 220,
+      liftRange: 340,
+      driftRange: 120
+    },
+    {
+      count: 34,
+      originX: "50%",
+      originY: "62%",
+      angleStart: -2.2,
+      angleSpread: 4.4,
+      minDistance: 200,
+      distanceRange: 420,
+      liftBase: 190,
+      liftRange: 260,
+      driftRange: 200
+    }
+  ];
+
+  let pieceIndex = 0;
+
+  cannons.forEach((cannon) => {
+    for (let index = 0; index < cannon.count; index += 1) {
+      const piece = document.createElement("span");
+      const angle = cannon.angleStart + (index / Math.max(1, cannon.count - 1)) * cannon.angleSpread;
+      const distance = cannon.minDistance + Math.random() * cannon.distanceRange;
+      const drift = (Math.random() - 0.5) * cannon.driftRange;
+      const verticalLift = cannon.liftBase + Math.random() * cannon.liftRange;
+      const rotation = Math.round(Math.random() * 360);
+      const shape = shapes[pieceIndex % shapes.length];
+      const wave = (Math.random() - 0.5) * 220;
+
+      piece.className = "party-popper-piece";
+      piece.style.setProperty("--piece-origin-x", cannon.originX);
+      piece.style.setProperty("--piece-origin-y", cannon.originY);
+      piece.style.setProperty("--piece-color", colors[pieceIndex % colors.length]);
+      piece.style.setProperty("--piece-width", shape.width);
+      piece.style.setProperty("--piece-height", shape.height);
+      piece.style.setProperty("--piece-radius", shape.radius);
+      piece.style.setProperty("--piece-x", `${Math.cos(angle) * distance + drift + wave}px`);
+      piece.style.setProperty("--piece-y", `${Math.sin(angle) * distance - verticalLift}px`);
+      piece.style.setProperty("--piece-rotate", `${rotation}deg`);
+      piece.style.animationDelay = `${Math.random() * 240}ms`;
+      partyPoppers.appendChild(piece);
+      pieceIndex += 1;
     }
   });
+
+  partyPoppers.classList.remove("is-bursting");
+  void partyPoppers.offsetWidth;
+  partyPoppers.classList.add("is-bursting");
+
+  window.setTimeout(() => {
+    partyPoppers.classList.remove("is-bursting");
+    partyPoppers.innerHTML = "";
+  }, 1750);
 }
 
 function setMusicUnavailable() {
@@ -359,8 +450,6 @@ function setupMusicToggle() {
       setMusicUnavailable();
     }
   }, 1200);
-
-  playBackgroundMusic();
 }
 
 runTypingEffect();
