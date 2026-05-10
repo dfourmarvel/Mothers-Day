@@ -9,6 +9,14 @@
     name="description"
     content="A heartfelt Mother's Day tribute for Josephine Yaba Dzikunu, lovingly known as Mama Joe."
   >
+  <link
+    rel="preload"
+    as="image"
+    href="assets/images/optimized/mama-joe-hero.jpeg"
+    imagesrcset="assets/images/optimized/mama-joe-hero.jpeg 800w"
+    imagesizes="(min-width: 700px) 40vw, 100vw"
+    fetchpriority="high"
+  >
   <link rel="preload" href="assets/fonts/Manrope-400.ttf" as="font" type="font/ttf" crossorigin>
   <link rel="preload" href="assets/fonts/CormorantGaramond-700.ttf" as="font" type="font/ttf" crossorigin>
   <link rel="stylesheet" href="style.css">
@@ -39,7 +47,7 @@
             <p class="eyebrow">For Josephine Yaba Dzikunu</p>
             <h1>Happy Mother&rsquo;s Day Mama Joe <span class="heart">&#128155;</span></h1>
             <p class="hero-lead">
-              You are the kind of woman who brings warmth into a room before you even speak, and love into a memory long after the day is over.
+              You are the kind of woman who brings warmth into a room before you even speak, and love into our lives in ways that stay with all of us every single day.
             </p>
             <p class="typing-line">
               <span class="typing-prefix">Today is for the woman who</span>
@@ -53,21 +61,22 @@
               <span class="typing-dot"></span>
             </div>
             <div class="hero-actions">
-              <a class="button button-primary" href="#letter">Read your letter</a>
-              <a class="button button-secondary" href="#gallery">See our memories</a>
+              <a class="button button-primary" href="#letter">Read our letter</a>
+              <a class="button button-secondary" href="#memories">See our memories</a>
             </div>
           </div>
 
           <figure class="hero-photo-frame">
-            <img
-              class="hero-photo hero-photo-mobile managed-image"
-              src="assets/images/optimized/mama-joe-hero.jpeg"
-              alt="Mama Joe smiling in a white dress portrait"
-              width="800"
-              height="1000"
-              decoding="async"
-              fetchpriority="high"
-            >
+              <img
+                class="hero-photo hero-photo-mobile managed-image"
+                src="assets/images/optimized/mama-joe-hero.jpeg"
+                alt="Mama Joe smiling in a white dress portrait"
+                width="800"
+                height="1000"
+                sizes="(min-width: 700px) 40vw, 100vw"
+                decoding="async"
+                fetchpriority="high"
+              >
           </figure>
         </div>
       </div>
@@ -80,7 +89,7 @@
     <main>
       <section class="section letter-section" id="letter">
         <div class="section-heading reveal">
-          <p class="eyebrow">A letter from the heart</p>
+          <p class="eyebrow">A letter from your family</p>
           <h2>For the woman who makes love feel effortless</h2>
         </div>
 
@@ -91,40 +100,42 @@
 
               <div class="letter-body">
                 <p>
-                  Today, I just want to pause and say thank you. Thank you for being the kind of mother
-                  whose love is never small or half-given. You show up fully, with warmth in your voice,
-                  care in your hands, and a heart that somehow always makes room for one more person.
+                  Today, we want to pause together and say thank you. Thank you for being the kind of
+                  mother and wife whose love is never small or half-given. You show up fully, with warmth
+                  in your voice, care in your hands, and a heart that somehow always makes room for all of us.
                 </p>
 
                 <p>
-                  Some of my favorite memories of you are not only the big occasions, but the way you make
-                  ordinary moments feel unforgettable. A school visit becomes joy because you came carrying
-                  food for everyone. A family outing becomes brighter because your presence fills it with
-                  laughter. Even a first day somewhere new feels easier when you are there.
+                  Some of our favorite memories of you are not only the big occasions, but the way you
+                  make ordinary moments feel unforgettable. A school visit becomes joy because you came
+                  carrying food for everyone. A family outing becomes brighter because your presence fills
+                  it with laughter. Even a first day somewhere new feels easier when you are there.
                 </p>
 
                 <p>
-                  I admire how naturally you care for people. You do not love in theory, you love in action.
-                  You feed, you check in, you encourage, you give, and you make people feel seen. That is
-                  part of what makes you so beautiful. Your kindness does not stay in words, it becomes
-                  something real that people can feel and remember.
+                  We admire how naturally you care for people. You do not love in theory, you love in
+                  action. You feed, you check in, you encourage, you give, and you make people feel seen.
+                  That is part of what makes you so beautiful. Your kindness does not stay in words, it
+                  becomes something real that people can feel and remember.
                 </p>
 
                 <p>
                   Thank you for every quiet sacrifice, every prayer, every effort, and every generous act
-                  that has shaped the people around you. Thank you for being soft without being weak,
-                  strong without losing your tenderness, and joyful in a way that makes others feel welcome.
+                  that has shaped our home and the people around you. Thank you for being soft without
+                  being weak, strong without losing your tenderness, and joyful in a way that makes others
+                  feel welcome.
                 </p>
 
                 <p>
-                  If I could gather all the gratitude, pride, and love you deserve into one gift, it still
-                  would not fully measure what you mean. So let this page say it simply and sincerely:
-                  I love you deeply, I honor the woman you are, and I thank God for the blessing of you.
+                  If we could gather all the gratitude, pride, and love you deserve into one gift, it
+                  still would not fully measure what you mean to us. So let this page say it simply and
+                  sincerely: we love you deeply, we honor the woman you are, and we thank God for the
+                  blessing of you.
                 </p>
 
                 <p class="letter-close">
                   Happy Mother&rsquo;s Day, Mama Joe.<br>
-                  With all my love, always.
+                  With all our love, from me, Francis, Eastwood, and your dearest husband.
                 </p>
               </div>
             </div>
@@ -144,8 +155,8 @@
                 class="letter-photo letter-photo-accent letter-photo-accent-mobile managed-image"
                 src="assets/images/optimized/mama-joe-letter-accent.jpeg"
                 alt="Mama Joe smiling in a warm candid moment"
-                width="1200"
-                height="750"
+                width="960"
+                height="600"
                 loading="lazy"
                 decoding="async"
                 fetchpriority="low"
@@ -208,8 +219,8 @@
                 loading="lazy"
                 decoding="async"
                 fetchpriority="low"
-                width="1280"
-                height="800"
+                width="960"
+                height="600"
               >
               <span class="gallery-tap-hint" aria-hidden="true">Tap to view</span>
             </button>
@@ -285,13 +296,13 @@
               <figure class="timeline-photo-frame">
                 <img
                   class="timeline-photo timeline-photo-francis managed-image"
-                  src="assets/images/timeline/francis-school-first-time.jpeg"
+                  src="assets/images/optimized/timeline/francis-school-first-time.jpeg"
                   alt="Mama Joe at Francis School for the first time"
                   loading="lazy"
                   decoding="async"
                   fetchpriority="low"
-                  width="900"
-                  height="1200"
+                  width="720"
+                  height="405"
                 >
               </figure>
               <p class="timeline-year">First-time wonder</p>
@@ -315,7 +326,7 @@
                   decoding="async"
                   fetchpriority="low"
                   width="900"
-                  height="1200"
+                  height="1185"
                 >
               </figure>
               <p class="timeline-year">Family joy</p>
@@ -339,14 +350,14 @@
                   decoding="async"
                   fetchpriority="low"
                   width="900"
-                  height="1200"
+                  height="1194"
                 >
               </figure>
               <p class="timeline-year">Love in action</p>
-              <h3>Bringing food for all my friends</h3>
+              <h3>Bringing food for everyone at school</h3>
               <p>
                 This memory says so much about you. You did not just visit, you arrived with generosity,
-                making sure everyone around me felt included, seen, and cared for.
+                making sure everyone there felt included, seen, and cared for.
               </p>
             </div>
           </article>
@@ -357,13 +368,13 @@
               <figure class="timeline-photo-frame">
                 <img
                   class="timeline-photo timeline-photo-orphanage managed-image"
-                  src="assets/images/timeline/orphanage-visit-essentials.jpeg"
+                  src="assets/images/optimized/timeline/orphanage-visit-essentials.jpeg"
                   alt="Mama Joe visiting an orphanage with food and essentials"
                   loading="lazy"
                   decoding="async"
                   fetchpriority="low"
-                  width="900"
-                  height="1200"
+                  width="720"
+                  height="540"
                 >
               </figure>
               <p class="timeline-year">A giving heart</p>
@@ -382,7 +393,7 @@
           <p class="eyebrow">One more thing</p>
           <h2>A little surprise for Mama Joe</h2>
           <p>
-            Some love deserves a second reveal. Tap the gift and watch a hidden message bloom.
+            Some love deserves a second reveal. Tap the gift and watch a message from all of us bloom.
           </p>
           <button class="button button-primary surprise-button" id="surpriseButton" type="button" aria-expanded="false" aria-controls="surpriseMessage">
             Tap for a surprise &#127873;
@@ -397,8 +408,8 @@
             <p class="surprise-kicker">Surprise, Mama Joe</p>
             <h3>You are loved more than words can measure.</h3>
             <p>
-              Not just today, but every day, your love lives in the hearts, smiles, courage, and hope
-              of everyone blessed to know you.
+              Not just today, but every day, your love lives in our hearts, our smiles, our courage,
+              and our hope. We are grateful for you, and we celebrate you together.
             </p>
           </div>
         </div>
@@ -406,7 +417,7 @@
     </main>
 
     <footer class="site-footer reveal">
-      <p>Made with all my love for you, Mama Joe. Happy Mother&rsquo;s Day always.</p>
+      <p>Made with all our love for you, Mama Joe, from your family. Happy Mother&rsquo;s Day always.</p>
     </footer>
   </div>
 
@@ -424,6 +435,6 @@
     <source src="assets/audio/sweet-mother.mp3" type="audio/mpeg">
   </audio>
 
-  <script src="script.js"></script>
+  <script src="script.js" defer></script>
 </body>
 </html>

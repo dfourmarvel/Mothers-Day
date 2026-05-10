@@ -715,39 +715,32 @@ button:focus-visible {
   overflow: hidden;
   background: rgba(255, 246, 234, 0.96);
   padding: 0.25rem;
-  max-height: 220px;
 }
 
 .timeline-photo {
   width: 100%;
-  aspect-ratio: 4 / 3;
-  object-fit: cover;
-  object-position: center top;
+  height: auto;
+  aspect-ratio: auto;
+  object-fit: contain;
+  object-position: center;
   border-radius: 12px;
 }
 
-/* Francis school — landscape family selfie, faces fill upper half */
+/* Timeline photos should stay fully visible without cropping. */
 .timeline-photo-francis {
-  aspect-ratio: 16 / 9;
-  object-position: center 15%;
+  aspect-ratio: auto;
 }
 
-/* Nzulezu — portrait group in life jackets, all faces in upper 60% */
 .timeline-photo-nzulezu {
-  aspect-ratio: 4 / 3;
-  object-position: center 20%;
+  aspect-ratio: auto;
 }
 
-/* School visit — Mama Joe standing top-left behind seated kids */
 .timeline-photo-school {
-  aspect-ratio: 4 / 3;
-  object-position: 15% top;
+  aspect-ratio: auto;
 }
 
-/* Orphanage — landscape scene, Mama Joe bending over table on the left */
 .timeline-photo-orphanage {
-  aspect-ratio: 4 / 3;
-  object-position: 25% 30%;
+  aspect-ratio: auto;
 }
 
 .timeline-year {
@@ -1030,9 +1023,8 @@ button:focus-visible {
     padding: 1.2rem;
   }
 
-  /* Timeline photo responsive overrides — per-image classes take priority */
   .timeline-photo {
-    aspect-ratio: 4 / 3;
+    aspect-ratio: auto;
   }
 
   .timeline-item:nth-child(odd) .timeline-content {
@@ -1123,7 +1115,6 @@ button:focus-visible {
   .letter-photo-accent-mobile,
   .gallery-photo-full-mobile,
   .timeline-photo {
-    object-fit: contain;
     background: rgba(255, 244, 229, 0.85);
   }
 
@@ -1136,7 +1127,7 @@ button:focus-visible {
   }
 
   .timeline-photo {
-    aspect-ratio: 4 / 3;
+    aspect-ratio: auto;
   }
 
   .timeline-photo-frame {

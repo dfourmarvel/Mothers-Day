@@ -137,7 +137,7 @@ function openLightbox(image, trigger = null) {
   }
 
   lastFocusedTrigger = trigger;
-  lightboxImage.src = image.src;
+  lightboxImage.src = image.currentSrc || image.src;
   lightboxImage.alt = image.alt;
   lightboxCaption.textContent = image.dataset.caption || image.alt;
   lightbox.setAttribute("role", "dialog");
