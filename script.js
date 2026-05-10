@@ -253,6 +253,7 @@ function launchPartyPoppers() {
   if (!partyPoppers) return;
 
   partyPoppers.innerHTML = "";
+  const emissionWindow = 3000;
 
   const colors = ["#d8a24b", "#ec8b4f", "#f4c95d", "#ffffff", "#b77c23"];
   const shapes = [
@@ -263,40 +264,40 @@ function launchPartyPoppers() {
   ];
   const cannons = [
     {
-      count: 42,
+      count: 56,
       originX: "12%",
       originY: "78%",
       angleStart: -1.25,
       angleSpread: 1.05,
       minDistance: 260,
-      distanceRange: 560,
+      distanceRange: 680,
       liftBase: 220,
-      liftRange: 340,
-      driftRange: 120
+      liftRange: 380,
+      driftRange: 180
     },
     {
-      count: 42,
+      count: 56,
       originX: "88%",
       originY: "78%",
       angleStart: -2.95,
       angleSpread: 1.05,
       minDistance: 260,
-      distanceRange: 560,
+      distanceRange: 680,
       liftBase: 220,
-      liftRange: 340,
-      driftRange: 120
+      liftRange: 380,
+      driftRange: 180
     },
     {
-      count: 34,
+      count: 48,
       originX: "50%",
       originY: "62%",
       angleStart: -2.2,
       angleSpread: 4.4,
       minDistance: 200,
-      distanceRange: 420,
-      liftBase: 190,
-      liftRange: 260,
-      driftRange: 200
+      distanceRange: 560,
+      liftBase: 210,
+      liftRange: 320,
+      driftRange: 260
     }
   ];
 
@@ -323,7 +324,7 @@ function launchPartyPoppers() {
       piece.style.setProperty("--piece-x", `${Math.cos(angle) * distance + drift + wave}px`);
       piece.style.setProperty("--piece-y", `${Math.sin(angle) * distance - verticalLift}px`);
       piece.style.setProperty("--piece-rotate", `${rotation}deg`);
-      piece.style.animationDelay = `${Math.random() * 240}ms`;
+      piece.style.animationDelay = `${Math.random() * emissionWindow}ms`;
       partyPoppers.appendChild(piece);
       pieceIndex += 1;
     }
@@ -336,7 +337,7 @@ function launchPartyPoppers() {
   window.setTimeout(() => {
     partyPoppers.classList.remove("is-bursting");
     partyPoppers.innerHTML = "";
-  }, 1750);
+  }, emissionWindow + 1850);
 }
 
 function setMusicUnavailable() {
