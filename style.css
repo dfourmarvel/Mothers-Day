@@ -182,7 +182,7 @@ a {
 }
 
 .party-poppers.is-bursting .party-popper-piece {
-  animation: partyBurst 1700ms cubic-bezier(0.18, 0.8, 0.24, 1) forwards;
+  animation: partyBurst 2400ms cubic-bezier(0.18, 0.8, 0.24, 1) forwards;
 }
 
 .ambient {

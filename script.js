@@ -253,51 +253,53 @@ function launchPartyPoppers() {
   if (!partyPoppers) return;
 
   partyPoppers.innerHTML = "";
-  const emissionWindow = 3000;
+  const emissionWindow = 5000;
 
   const colors = ["#d8a24b", "#ec8b4f", "#f4c95d", "#ffffff", "#b77c23"];
   const shapes = [
-    { width: "0.65rem", height: "1.2rem", radius: "999px" },
-    { width: "0.9rem", height: "0.9rem", radius: "50%" },
-    { width: "1rem", height: "0.5rem", radius: "999px" },
-    { width: "0.45rem", height: "1.35rem", radius: "999px" }
+    { width: "0.7rem", height: "2.8rem", radius: "999px" },
+    { width: "1.1rem", height: "1.1rem", radius: "50%" },
+    { width: "1.5rem", height: "0.6rem", radius: "999px" },
+    { width: "0.5rem", height: "3.4rem", radius: "999px" },
+    { width: "0.8rem", height: "4.2rem", radius: "999px" },
+    { width: "0.35rem", height: "5rem", radius: "999px" }
   ];
   const cannons = [
     {
-      count: 56,
+      count: 80,
       originX: "12%",
       originY: "78%",
       angleStart: -1.25,
       angleSpread: 1.05,
-      minDistance: 260,
-      distanceRange: 680,
-      liftBase: 220,
-      liftRange: 380,
-      driftRange: 180
+      minDistance: 320,
+      distanceRange: 860,
+      liftBase: 260,
+      liftRange: 460,
+      driftRange: 260
     },
     {
-      count: 56,
+      count: 80,
       originX: "88%",
       originY: "78%",
       angleStart: -2.95,
       angleSpread: 1.05,
-      minDistance: 260,
-      distanceRange: 680,
-      liftBase: 220,
-      liftRange: 380,
-      driftRange: 180
+      minDistance: 320,
+      distanceRange: 860,
+      liftBase: 260,
+      liftRange: 460,
+      driftRange: 260
     },
     {
-      count: 48,
+      count: 64,
       originX: "50%",
       originY: "62%",
       angleStart: -2.2,
       angleSpread: 4.4,
-      minDistance: 200,
-      distanceRange: 560,
-      liftBase: 210,
-      liftRange: 320,
-      driftRange: 260
+      minDistance: 260,
+      distanceRange: 760,
+      liftBase: 240,
+      liftRange: 400,
+      driftRange: 360
     }
   ];
 
@@ -312,7 +314,7 @@ function launchPartyPoppers() {
       const verticalLift = cannon.liftBase + Math.random() * cannon.liftRange;
       const rotation = Math.round(Math.random() * 360);
       const shape = shapes[pieceIndex % shapes.length];
-      const wave = (Math.random() - 0.5) * 220;
+      const wave = (Math.random() - 0.5) * 320;
 
       piece.className = "party-popper-piece";
       piece.style.setProperty("--piece-origin-x", cannon.originX);
@@ -337,7 +339,7 @@ function launchPartyPoppers() {
   window.setTimeout(() => {
     partyPoppers.classList.remove("is-bursting");
     partyPoppers.innerHTML = "";
-  }, emissionWindow + 1850);
+  }, emissionWindow + 2600);
 }
 
 function setMusicUnavailable() {
